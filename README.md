@@ -25,7 +25,8 @@ I really do not recommend PIC today if you have other choices. Anyway, here is t
 # Toolchain overview
 
 * Compiler: gputils/SDCC for C and gcbasic for basic
-* SDK: shipped with SDCC or baremetal
+  - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
+* SDK: integrated with Compiler
 * Programming tool: a-p-prog with arduino, pk2cmd with PICKIT2, pymcuprog with nEDBG
 * Debugger: NO opensource solution
 
@@ -316,6 +317,23 @@ Program it:
 pymcuprog write -p /opt/microchip/mplabx/v6.00/packs/Microchip/PIC18F-Q_DFP/1.13.211/scripts/pic18f57q43 -f blink.hex  
 ```
 
+The output as:
+```
+Connecting to anything possible
+Connected to nEDBG CMSIS-DAP from Microchip (serial number MCHP3290041800001449)
+Debugger firmware version 1.22.73
+Debugger hardware revision 0
+Device mounted: 'pic18f57q43'
+No device specified.  Using on-board target (pic18f57q43)
+Pinging device...
+Ping response: 74C0
+Writing from hex file...
+Writing flash...
+Writing flash...
+Writing flash...
+Writing config_words...
+Done.
+```
 
 # Debug
 
