@@ -1,0 +1,12 @@
+diff -Nur GreatCowBASIC/sources/preprocessor.bi GreatCowBASICn/sources/preprocessor.bi
+--- GreatCowBASIC/sources/preprocessor.bi	2022-01-27 03:08:46.352232300 +0800
++++ GreatCowBASICn/sources/preprocessor.bi	2022-06-17 23:46:22.105754822 +0800
+@@ -1513,7 +1513,7 @@
+ 
+                       Temp = Message("BadFreqCharacter")
+                       Replace Temp, "%string%", ":"+MID(ChipName, INSTR(ChipName, ",") + 1)
+-                      LogError Temp, .Origin
++                      LogError Temp, "" 
+                 End if
+ 
+                 ChipName = Trim(Left(ChipName, INSTR(ChipName, ",") - 1))
