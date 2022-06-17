@@ -60,10 +60,10 @@ Here is example code to blink led connect to RC0 of PIC16F1823 breakout board. U
 
 #define LED PORTCbits.RC0
 
-// disable watchdog,
+// disable watchdog timer
 unsigned int __at (_CONFIG1) __configword = _WDTE_OFF;
 
-// just delay a number of for loop
+// not accurate, just delay some time
 void delay(unsigned int count)
 {
   unsigned int i;
@@ -75,17 +75,19 @@ void main(void)
 {
   // portc as digital
   ANSELC = 0;
+  
   // portc as output
   TRISC = 0;
   // or just set rc0 as output
   // TRISC0 = 0;
+  
   // led on
   LED = 1;
 
   while (1) {
     // toggle led
     LED = ~LED;
-    // delay some times
+    // delay a while
     delay(3000);
   }
 }
