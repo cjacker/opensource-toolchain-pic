@@ -1,0 +1,15 @@
+' Curiosity Nano DM164150 with PIC18F57Q43
+' onboard LED connect to PortF.3
+
+' ----- Configuration
+#CHIP 18f57q43 
+
+Do Forever
+
+    'Lighten LED for 100ms
+    PulseOut PortF.3, 100 ms
+
+    'Then wait 900 milliseconds after LED goes off:
+    Wait 900 ms
+
+Loop
