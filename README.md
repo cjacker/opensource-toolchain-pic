@@ -203,7 +203,7 @@ Verifying config
 
 ## using pk2cmd with PICKIT2
 
-## using pymcuprog with nEDBG debugger
+## using pymcuprog with Curiosity Nano PIC board
 
 # Debug
 
