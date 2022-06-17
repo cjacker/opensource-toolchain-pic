@@ -53,7 +53,7 @@ The 'GCB@Syn.rar' password is 'GCB', as mentioned in FAQ:
 
 >Why is the rar File for Linux encrypted?
 >
->There are software portals that do nothing other than catalog and provide free software for download. That's not really a big deal, but they >are often out of date and offer ancient versions. In addition, they earn advertising revenue that does not benefit the project. Btw. the >password is GCB 
+>There are software portals that do nothing other than catalog and provide free software for download. That's not really a big deal, but they are often out of date and offer ancient versions. In addition, they earn advertising revenue that does not benefit the project. Btw. the password is GCB 
 
 To build gcbasic, you need to have freebasic installed. Build and install gcbasic as
 
@@ -64,6 +64,8 @@ cd sources/linuxbuild
 ./install.sh build
 sudo ./install.sh install
 ```
+
+The patch 'gcbasic-0.99.01-build-fix.patch' provided in this repo.
 
 After installation, you should have `gcbasic` command on your PATH.
 
