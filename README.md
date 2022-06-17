@@ -8,11 +8,9 @@ This tutorial focus on 8-bit PIC mcu. aka PIC12/PIC16/PIC18 series.
 
 By the way, MicroChip seems do not care about "opensource" at all, it even does not provide a 'free' and 'full-feature' and 'close-source' compiler for 8-bit PIC. the offcial mplabX IDE use XC8 compiler, and with a free license, you won't get the best optimization, that means you have to buy a pro license.
 
-And nowaday, MicroChip acquired ATMEL and add AVR support to XC8, I have no idea what will happen to AVR eco-system in future.
+And nowaday, MicroChip acquired ATMEL and already add AVR support to XC8, I have no idea what will happen to AVR eco-system in future. I really do not recommend PIC today if you have other choices.
 
-I really do not recommend PIC today if you have other choices.
-
-Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to get a feel of PIC MCU.
+Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to get a feel of PIC MCU. Note the PIC related sources of SDCC and gputils are un-maintained now, this tutorial is only for hobby project, do not use it in product.
 
 
 # Hardware prerequist
