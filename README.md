@@ -234,11 +234,11 @@ sudo install -m0644 pk2cmd/release/PK2V023200.hex /usr/share/pk2/
 sudo install -m0644 60-pickit2.rules /etc/udev/rules.d/
 ```
 
-To be written.
+**To be written.**
 
 
 ## using zeppp with Arduino as PIC programmer
-ZEPPP is a PIC programmer that requires only an Arduino-compatible board and a small command-line PC utility (CLI) to read, write, erase and verify several LVP-capable PIC microcontrollers via ICSP (In-Circuit Serial Programming).
+[ZEPPP](https://github.com/battlecoder/zeppp) is a PIC programmer that requires only an Arduino-compatible board and a small command-line PC utility (CLI) to read, write, erase and verify several LVP-capable PIC microcontrollers via ICSP (In-Circuit Serial Programming).
 
 Currently ZEPPP supports the following PIC devices:
 
@@ -246,10 +246,59 @@ Currently ZEPPP supports the following PIC devices:
 * 16F627A, 16F628A, 16F648A
 * 16F873A, 16F874A, 16F876A, 16F877A
 * 16F870, 16F871, 16F872, 16F873, 16F874, 16F876, 16F877
-* 16F882, 16F883, 16F884, 16F886, 16F887 (*)
-(*): Calibration word and PGM block writes not yet supported in this family of microcontrollers.
+* 16F882, 16F883, 16F884, 16F886, 16F887
+  + Calibration word and PGM block writes not yet supported in this family of microcontrollers.
 
 And can work with all the memory areas from the supported PICs (Program memory, EEPROM, Config words and User IDs).
+
+Here I make a fork to fix some issues, prepare a UNO or NANO and upload 'ZEPPP' sketch to it, you need to have 'arduino-cli' installed:
+
+```
+git clone https://github.com/battlecoder/zeppp.git
+# to support PIC16F887
+git checkout experimental/PIC16F88X
+
+cd zeppp/ZEPPP
+make upload TARGET=nano -f Makefile.linux
+```
+
+If you use Arduino UNO, change 'TARGET=nano' to 'TARGET=uno'.
+
+If you want to build ZEPPP-cli instead of using pre-built 'zeppp-cli.jar':
+
+```
+cd ZEPPP-cli
+mvn clean package
+```
+
+Then wire it up as:
+
+```
++--------------+      +--------------+       +----------------+
+|              |      |    Arduino   |       |      PIC       |
+|              |      |        (5V)  +-------+ (VCC)          |
+|              |      |              |       |                |
+|              |      |        (GND) +-------+ (GND)          |
+|              | USB  |              |       |                |
+|      PC      +------+        (D6)  +-------+ (MCLR)         |
+|              |      |              |       |                |
+|              |      |        (D7)  +-------+ (PGD)          |
+|              |      |              |       |                |
+|              |      |        (D8)  +-------+ (PGC)          |
+|              |      |              |       |                |
+|              |      |        (D9)  +-------+ (PGM)          |
+|              |      |              |       |                |
++--------------+      +--------------+       +----------------+
+```
+
+**NOTE:** if the target is not 5V voltage tolarence, you should supply the power seperately.
+
+Then program it:
+```
+java -jar zeppp-cli.jar -c /dev/ttyUSB0 -wait 2000 -i blink.hex -p -va
+```
+
+For more usage of zeppp-cli, please refer to https://github.com/battlecoder/zeppp.
 
 
 ## using a-p-prog with Arduino as PIC programmer
@@ -262,10 +311,11 @@ Here I make a fork to improve the usablity and add PIC16F1823 support, you can d
 
 ```
 git clone https://github.com/cjacker/a-p-prog.git
-cd sw
+cd /a-p-prog/sw
 make -f Makefile.linux
 sudo make install PREFIX=/usr -f Makefile.linux
 ```
+
 `pp3` programmer and the device database will be installed.
 
 Then prepare a UNO or NANO and upload the 'pp' sketch to it, you need to have 'arduino-cli' installed:
@@ -327,9 +377,6 @@ Verifying config
 ```
 
 After programming successfully, the LED should blink.
-
-
-
 
 ## using pymcuprog with Curiosity Nano PIC board
 
