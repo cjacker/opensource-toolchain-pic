@@ -458,8 +458,6 @@ Done.
 
 ## other program solutions
 
-https://github.com/battlecoder/zeppp/
-
 https://github.com/rweather/ardpicprog
 
 
