@@ -1,7 +1,7 @@
-diff -Naur a/cmd_app.cpp b/cmd_app.cpp
---- a/cmd_app.cpp	2009-01-07 20:59:18.000000000 +0000
-+++ b/cmd_app.cpp	2012-07-25 04:01:20.237803773 +0100
-@@ -84,12 +84,8 @@
+diff -Nur PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/cmd_app.cpp PK2CMD_SourceV1_23_00.new/pk2cmd/pk2cmd/cmd_app.cpp
+--- PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/cmd_app.cpp	2022-06-15 17:36:26.000000000 +0800
++++ PK2CMD_SourceV1_23_00.new/pk2cmd/pk2cmd/cmd_app.cpp	2022-06-19 04:34:56.390265315 +0800
+@@ -86,12 +86,8 @@
  		return;
  	}
  	else
@@ -16,7 +16,7 @@ diff -Naur a/cmd_app.cpp b/cmd_app.cpp
  	}
  	if (!PicFuncs.ReadDeviceFile(tempString))
  	{
-@@ -496,10 +492,18 @@
+@@ -504,10 +500,18 @@
  			ret = Pk2BootLoadFuncs.ReadHexAndDownload(tempString, &PicFuncs, pk2UnitIndex);
  			if (!ret)
  			{
