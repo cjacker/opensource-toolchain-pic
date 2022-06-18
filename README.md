@@ -15,7 +15,7 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
 # Hardware prerequist
 
 * a PIC12/PIC16/PIC18 dev board
-  - If you need to buy new one, I recommend to check the list of a-p-prog/sdcc/gcbasic to choose the PIC MCU model opensource toolchain supported.
+  - If you need to buy new one, I recommend to check the list that the opensource toolchain can supported.
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
   - In this tutorial, I use PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
 * Arduino uno or nano as programmer
@@ -27,7 +27,7 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
 * Compiler: gputils/SDCC for C and gcbasic for basic
   - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with Compiler
-* Programming tool: a-p-prog with arduino, pk2cmd with PICKIT2, pymcuprog with nEDBG
+* Programming tool: a-p-prog/zeppp with arduino (only LVP), pk2cmd with PICKIT2, pymcuprog with nEDBG
 * Debugger: NO opensource ICE solution
 
 # Compiler
@@ -200,11 +200,26 @@ A 'blink.hex' will be generated in currect dir.
 
 # Programming
 
-## using Arduino PIC programmer
+## using zeppp with Arduino as PIC programmer
+ZEPPP is a PIC programmer that requires only an Arduino-compatible board and a small command-line PC utility (CLI) to read, write, erase and verify several LVP-capable PIC microcontrollers via ICSP (In-Circuit Serial Programming).
+
+Currently ZEPPP supports the following PIC devices:
+
+* 16F87, 16F88
+* 16F627A, 16F628A, 16F648A
+* 16F873A, 16F874A, 16F876A, 16F877A
+* 16F870, 16F871, 16F872, 16F873, 16F874, 16F876, 16F877
+* 16F882, 16F883, 16F884, 16F886, 16F887 (*)
+(*): Calibration word and PGM block writes not yet supported in this family of microcontrollers.
+
+And can work with all the memory areas from the supported PICs (Program memory, EEPROM, Config words and User IDs).
+
+
+## using a-p-prog with Arduino as PIC programmer
 
 [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog) is a 8-bit PIC programmer built around AVR/Arduino platform, if you have a Arduino UNO or NANO, then you can use it as 8bit PIC programmer.
 
-It support a lot of 8-bit PIC models and very easy to build.
+It support a lot of 8-bit LVP PIC models and very easy to build.
 
 Here I make a fork to improve the usablity and add PIC16F1823 support, you can download and built it yourself:
 
