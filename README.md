@@ -282,9 +282,12 @@ pk2cmd and associate device database file is the official open-source program to
 
 Build:
 ```
-mkdir pk2cmd && cd pk2cmd
+mkdir build && cd build
+
 wget http://ww1.microchip.com/downloads/en/DeviceDoc/PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
 wget -U Mozilla "http://www.microchip.com/forums/download.axd?file=0;749972" -O PK2DeviceFile.zip
+wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/pk2_devicefile_osfile_paths.patch
+wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-pickit2.rules
 
 unzip PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
 unzip PK2DeviceFile.zip
@@ -307,8 +310,6 @@ sudo install -m0644 pk2cmd/release/PK2V023200.hex /usr/share/pk2/
 # install udev rule to avoid using sudo
 sudo install -m0644 60-pickit2.rules /etc/udev/rules.d/
 ```
-
-
 
 To be written.
 
