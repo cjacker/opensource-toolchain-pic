@@ -18,7 +18,7 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
   - If you need to buy new one, I recommend to check the list that the opensource toolchain can supported.
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
   - In this tutorial, I use PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
-* [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer
+* [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer, prefer PICKIT2.
 * Arduino uno or nano as programmer
 
 # Toolchain overview
@@ -26,7 +26,7 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
 * Compiler: gputils/SDCC for C and gcbasic for basic
   - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with Compiler
-* Programming tool: pk2cmd with PICKIT2, a-p-prog/zeppp with arduino (only LVP), pymcuprog with nEDBG
+* Programming tool: pk2cmd-improved with PICKIT2, a-p-prog/zeppp with arduino (only LVP), pymcuprog with nEDBG
 * Debugger: NO opensource ICE solution
 
 # Compiler
@@ -199,9 +199,11 @@ A 'blink.hex' will be generated in currect dir.
 
 # Programming
 
-## using pk2cmdminus with PICKIT2 or PICKIT3
-pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, The support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/)
+## using improved pk2cmd with PICKIT2 or PICKIT3
 
+pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, the support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/). 
+
+**Now the improved pk2cmd has support for 1066 parts, supports nearly all, if not all, 8-bit PIC microcontrollers.**
 
 Build:
 ```
