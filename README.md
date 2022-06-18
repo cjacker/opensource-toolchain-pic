@@ -391,6 +391,11 @@ Writing config_words...
 Done.
 ```
 
+## other program solutions
+
+https://github.com/rweather/ardpicprog
+
+
 # Debug
 
 There isn't opensource ICE solution exist for PIC.
