@@ -4,10 +4,16 @@
 ' ----- Configuration
 #CHIP 18f57q43 
 
+' Comment above line and uncomment this line to build for 16F1823
+'#CHIP 16f1823
+
 Do Forever
 
     'Lighten LED for 100ms
     PulseOut PortF.3, 100 ms
+
+		' Comment above line and uncomment this line for 16F1823
+    'PulseOut PortC.0, 100 ms
 
     'Then wait 900 milliseconds after LED goes off:
     Wait 900 ms
