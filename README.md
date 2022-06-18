@@ -18,16 +18,16 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
   - If you need to buy new one, I recommend to check the list that the opensource toolchain can supported.
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
   - In this tutorial, I use PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
-* Arduino uno or nano as programmer
-* [Optional] PICKIT2 as programmer
+* [PICKIT2](https://en.wikipedia.org/wiki/PICkit) as programmer
   - **NOTE:** NOT PICKIT3 and above, there is no opensource tool for PICKIT3, you have to use official IPE software with PICKIT3.
+* Arduino uno or nano as programmer
 
 # Toolchain overview
 
 * Compiler: gputils/SDCC for C and gcbasic for basic
   - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with Compiler
-* Programming tool: a-p-prog/zeppp with arduino (only LVP), pk2cmd with PICKIT2, pymcuprog with nEDBG
+* Programming tool: pk2cmd with PICKIT2, a-p-prog/zeppp with arduino (only LVP), pymcuprog with nEDBG
 * Debugger: NO opensource ICE solution
 
 # Compiler
@@ -200,6 +200,43 @@ A 'blink.hex' will be generated in currect dir.
 
 # Programming
 
+## using pk2cmd with PICKIT2
+pk2cmd and associate device database file is the official open-source program tool works with PICKIT2.
+
+Build:
+```
+mkdir build && cd build
+
+wget http://ww1.microchip.com/downloads/en/DeviceDoc/PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
+wget -U Mozilla "http://www.microchip.com/forums/download.axd?file=0;749972" -O PK2DeviceFile.zip
+wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/pk2_devicefile_osfile_paths.patch
+wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-pickit2.rules
+
+unzip PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
+unzip PK2DeviceFile.zip
+
+# apply global database file patch
+cat pk2_devicefile_osfile_paths.patch | patch -p1 -d pk2cmd/pk2cmd
+
+cd pk2cmd/pk2cmd
+make linux
+cd ../..
+
+# install cmd
+sudo install -m0755 pk2cmd/pk2cmd/pk2cmd /usr/bin
+
+sudo mkdir -p /usr/share/pk2
+# install device database
+sudo install -m0644 PK2DeviceFile.dat /usr/share/pk2/
+# install adapter firmware
+sudo install -m0644 pk2cmd/release/PK2V023200.hex /usr/share/pk2/
+# install udev rule to avoid using sudo
+sudo install -m0644 60-pickit2.rules /etc/udev/rules.d/
+```
+
+To be written.
+
+
 ## using zeppp with Arduino as PIC programmer
 ZEPPP is a PIC programmer that requires only an Arduino-compatible board and a small command-line PC utility (CLI) to read, write, erase and verify several LVP-capable PIC microcontrollers via ICSP (In-Circuit Serial Programming).
 
@@ -292,41 +329,7 @@ Verifying config
 After programming successfully, the LED should blink.
 
 
-## using pk2cmd with PICKIT2
-pk2cmd and associate device database file is the official open-source program tool works with PICKIT2.
 
-Build:
-```
-mkdir build && cd build
-
-wget http://ww1.microchip.com/downloads/en/DeviceDoc/PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
-wget -U Mozilla "http://www.microchip.com/forums/download.axd?file=0;749972" -O PK2DeviceFile.zip
-wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/pk2_devicefile_osfile_paths.patch
-wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-pickit2.rules
-
-unzip PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
-unzip PK2DeviceFile.zip
-
-# apply global database file patch
-cat pk2_devicefile_osfile_paths.patch | patch -p1 -d pk2cmd/pk2cmd
-
-cd pk2cmd/pk2cmd
-make linux
-cd ../..
-
-# install cmd
-sudo install -m0755 pk2cmd/pk2cmd/pk2cmd /usr/bin
-
-sudo mkdir -p /usr/share/pk2
-# install device database
-sudo install -m0644 PK2DeviceFile.dat /usr/share/pk2/
-# install adapter firmware
-sudo install -m0644 pk2cmd/release/PK2V023200.hex /usr/share/pk2/
-# install udev rule to avoid using sudo
-sudo install -m0644 60-pickit2.rules /etc/udev/rules.d/
-```
-
-To be written.
 
 ## using pymcuprog with Curiosity Nano PIC board
 
