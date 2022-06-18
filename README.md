@@ -70,6 +70,15 @@ The patch 'gcbasic-0.99.01-build-fix.patch' provided in this repo.
 After installation, you should have `gcbasic` command on your PATH.
 
 
+The source file suffix of gcbasic is 'gcb', it can not be detect by editors as basic source file. for example, you can add
+
+```
+autocmd BufNewFile,BufRead *.gcb set syntax=basic
+```
+
+to `~/.vimrc`.
+
+
 # SDK
 
 ## SDCC
@@ -160,17 +169,20 @@ By the way, it's not neccesary to look into the codes seriously at this time. ev
 Below is a gcbasic example to blink led connected to F.3:
 
 ```basic
-' blink.gcb
 ' Curiosity Nano DM164150 with PIC18F57Q43
 ' onboard LED connect to PortF.3
 
 ' ----- Configuration
 #CHIP 18f57q43
+' Comment out above line and uncomment this line to build for 16F1823
+'#CHIP 16f1823
 
 Do Forever
 
     'Lighten LED for 100ms
     PulseOut PortF.3, 100 ms
+    ' Comment out above line and uncomment this line for 16F1823 (LED to RC0)
+    'PulseOut PortC.0, 100 ms
 
     'Then wait 900 milliseconds after LED goes off:
     Wait 900 ms
@@ -267,7 +279,7 @@ Verifying config
 
 These years, MicroChip officially provide some Curiosity Nano boards of PIC or AVR, it has an onboard nEDBG debugger integrated and can be used as programmer and debugger with MPLABX directly. with these boards, you do NOT have to buy a expensive PICKIT 4.
 
-I have a DM164150 CNANO baord with PIC18F57Q43, and it can not supported by SDCC (need some work to do), thus I use the gcbasic to build a blink demo for it (refer to above sections for codes).
+I have a DM164150 CNANO baord with PIC18F57Q43, and it can not supported by SDCC directly (device headers is not include in SDCC), thus I use the gcbasic to build a blink demo for it (refer to above sections for codes).
 
 After 'blink.hex' generated, '[pymcuprog](https://github.com/microchip-pic-avr-tools/pymcuprog)' from MicroChip can be used to program it.
 
