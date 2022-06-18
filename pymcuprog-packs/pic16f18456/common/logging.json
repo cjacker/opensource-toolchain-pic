@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "override_mplab_setting": true,
+    "formatters": {
+        "detailed": {
+            "format": "%(name)s - %(levelname)s - %(message)s"
+        },
+        "simple": {
+            "format": "%(message)s"
+        }
+    },
+    "handlers": {
+        "mplabx": {
+            "class": "common.mplablog.MPLABLogHandler",
+            "formatter": "detailed",
+            "level": "WARNING",
+            "log_object": "log"
+        }
+    },
+    "loggers": {
+        "pyedbglib": {
+            "handlers": [
+                "mplabx"
+            ],
+            "level": "ERROR",
+            "propagate": true,
+            "qualname": "pyedbglib"
+        },
+        "debuggerbase": {
+            "handlers": [
+                "mplabx"
+            ],
+            "level": "WARNING",
+            "propagate": false,
+            "qualname": "debuggerbase"
+        }
+    },
+    "root": {
+        "handlers": [
+            "mplabx"
+        ],
+        "level": "INFO"
+    }
+}
