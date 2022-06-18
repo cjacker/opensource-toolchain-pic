@@ -18,8 +18,7 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
   - If you need to buy new one, I recommend to check the list that the opensource toolchain can supported.
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
   - In this tutorial, I use PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
-* [PICKIT2](https://en.wikipedia.org/wiki/PICkit) as programmer
-  - **NOTE:** NOT PICKIT3 and above, there is no opensource tool for PICKIT3, you have to use official IPE software with PICKIT3.
+* [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer
 * Arduino uno or nano as programmer
 
 # Toolchain overview
@@ -200,38 +199,36 @@ A 'blink.hex' will be generated in currect dir.
 
 # Programming
 
-## using pk2cmd with PICKIT2
-pk2cmd and associate device database file is the official open-source program tool works with PICKIT2.
+## using pk2cmdminus with PICKIT2 or PICKIT3
+pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, The support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/)
+
 
 Build:
 ```
 mkdir build && cd build
-
-wget http://ww1.microchip.com/downloads/en/DeviceDoc/PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
-wget -U Mozilla "http://www.microchip.com/forums/download.axd?file=0;749972" -O PK2DeviceFile.zip
+wget http://kair.us/projects/pickitminus/PK2CMD_SourceV1_23_00.zip
 wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/pk2_devicefile_osfile_paths.patch
-wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-pickit2.rules
+wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-pickit.rules
 
-unzip PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
-unzip PK2DeviceFile.zip
+unzip PK2CMD_SourceV1_23_00.zip
 
 # apply global database file patch
-cat pk2_devicefile_osfile_paths.patch | patch -p1 -d pk2cmd/pk2cmd
+cat pk2_devicefile_osfile_paths.patch | patch -p1 -d PK2CMD_SourceV1_23_00
 
-cd pk2cmd/pk2cmd
+cd PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd
 make linux
-cd ../..
+cd ../../../
 
 # install cmd
-sudo install -m0755 pk2cmd/pk2cmd/pk2cmd /usr/bin
+sudo install -m0755 PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/pk2cmd /usr/bin
 
 sudo mkdir -p /usr/share/pk2
 # install device database
-sudo install -m0644 PK2DeviceFile.dat /usr/share/pk2/
+sudo install -m0644 PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/PK2DeviceFile.dat /usr/share/pk2/
 # install adapter firmware
-sudo install -m0644 pk2cmd/release/PK2V023200.hex /usr/share/pk2/
+sudo cp PK2CMD_SourceV1_23_00/pk2cmd/release/*.hex /usr/share/pk2/
 # install udev rule to avoid using sudo
-sudo install -m0644 60-pickit2.rules /etc/udev/rules.d/
+sudo install -m0644 60-pickit.rules /etc/udev/rules.d/
 ```
 
 **To be written.**
