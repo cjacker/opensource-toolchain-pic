@@ -353,6 +353,7 @@ Done.
 
 There isn't opensource ICE solution exist for PIC.
 
-But you can have a try of '[picsimlab](https://github.com/lcgamboa/picsimlab)'.
+But you can have a try of [picsim](https://github.com/lcgamboa/picsim) and [picsimlab](https://github.com/lcgamboa/picsimlab) with very limited hardware support.
+
 
 
