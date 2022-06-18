@@ -278,6 +278,37 @@ After programming successfully, the LED should blink.
 
 
 ## using pk2cmd with PICKIT2
+pk2cmd and associate device database file is the official open-source program tool works with PICKIT2.
+
+Build:
+```
+mkdir pk2cmd && cd pk2cmd
+wget http://ww1.microchip.com/downloads/en/DeviceDoc/PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
+wget -U Mozilla "http://www.microchip.com/forums/download.axd?file=0;749972" -O PK2DeviceFile.zip
+
+unzip PICkit2_PK2CMD_WIN32_SourceV1-21_RC1.zip
+unzip PK2DeviceFile.zip
+
+# apply global database file patch
+cat pk2_devicefile_osfile_paths.patch | patch -p1 -d pk2cmd/pk2cmd
+
+cd pk2cmd/pk2cmd
+make linux
+cd ../..
+
+# install cmd
+sudo install -m0755 pk2cmd/pk2cmd/pk2cmd /usr/bin
+
+sudo mkdir -p /usr/share/pk2
+# install device database
+sudo install -m0644 PK2DeviceFile.dat /usr/share/pk2/
+# install adapter firmware
+sudo install -m0644 pk2cmd/release/PK2V023200.hex /usr/share/pk2/
+# install udev rule to avoid using sudo
+sudo install -m0644 60-pickit2.rules /etc/udev/rules.d/
+```
+
+
 
 To be written.
 
