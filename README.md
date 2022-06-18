@@ -28,7 +28,7 @@ I really do not recommend PIC today if you have other choices. Anyway, here is t
   - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with Compiler
 * Programming tool: a-p-prog with arduino, pk2cmd with PICKIT2, pymcuprog with nEDBG
-* Debugger: NO opensource solution
+* Debugger: NO opensource ICE solution
 
 # Compiler
 
@@ -351,5 +351,8 @@ Done.
 
 # Debug
 
-There isn't opensource debug solution exist for PIC.
+There isn't opensource ICE solution exist for PIC.
+
+But you can have a try of '[picsimlab](https://github.com/lcgamboa/picsimlab)'.
+
 
