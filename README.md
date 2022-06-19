@@ -26,12 +26,13 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
 * Compiler: gputils/SDCC for C and gcbasic for basic
   - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with Compiler
-* Programming tool: pk2cmd-improved with PICKIT2, a-p-prog/zeppp with arduino (only LVP), pymcuprog with nEDBG
+* Programming tool: pk2cmd-minus (improved pk2cmd) with PICKIT2, pymcuprog with nEDBG, a-p-prog/zeppp with arduino (only LVP)
 * Debugger: NO opensource ICE solution
 
 # Compiler
 
 ## SDCC
+
 Most Linux distributions shipped SDCC in their repositories. You can install it by yum or apt.
 
 If you really want to build it yourself, at least you need make/bison/flex/libtool/g++/boost development package/zlib development package/etc. installed, and the building process is really simple:
@@ -199,11 +200,11 @@ A 'blink.hex' will be generated in currect dir.
 
 # Programming
 
-## using improved pk2cmd with PICKIT2 or PICKIT3
+## using pk2cmd-minus with PICKIT2 or PICKIT3
 
 pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, the support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/). 
 
-**Now [the improved pk2cmd - 'pk2cmd minus' developed by kair](http://kair.us/projects/pickitminus/) has support for 1066 parts, supports nearly all, if not all, 8-bit PIC microcontrollers.**
+**['pk2cmd minus' developed by kair](http://kair.us/projects/pickitminus/) has support for 1066 parts, supports nearly all, if not all, 8-bit PIC microcontrollers.**
 
 For more info, please refer to http://kair.us/projects/pickitminus/.
 
@@ -219,7 +220,7 @@ wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-
 
 unzip PK2CMD_SourceV1_23_00.zip
 
-# apply global database file patch
+# apply global database file path patch
 cat pk2_devicefile_osfile_paths.patch | patch -p1 -d PK2CMD_SourceV1_23_00
 
 cd PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd
@@ -230,17 +231,20 @@ cd ../../../
 sudo install -m0755 PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/pk2cmd /usr/bin
 
 sudo mkdir -p /usr/share/pk2
+
 # install device database
 sudo install -m0644 PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/PK2DeviceFile.dat /usr/share/pk2/
+
 # install adapter firmware
 sudo cp PK2CMD_SourceV1_23_00/pk2cmd/release/*.hex /usr/share/pk2/
+
 # install udev rule to avoid using sudo
 sudo install -m0644 60-pickit.rules /etc/udev/rules.d/
 ```
 
 If you want to edit the 'PK2DeviceFile.dat' to add new devices, you can use [device file editor](https://sites.google.com/site/pk2devicefileeditor/) created by dougy83.
 
-If you don't mind to use the prebuilt version of pk2cmdminus, you can use http://kair.us/projects/pickitminus/pk2cmd-x86_64.AppImage directly.
+If you don't mind to use the prebuilt binary of pk2cmd-minus, you can use http://kair.us/projects/pickitminus/pk2cmd-x86_64.AppImage directly.
 
 
 **To be written.**
@@ -468,14 +472,14 @@ Done.
 
 ## other program solutions
 
-https://github.com/rweather/ardpicprog
+There are a lot of opensource (both hardware and software) program solutions for PIC, list some of them here for your reference:
+* http://hyvatti.fi/~jaakko/pic/picprog.html
+* http://usbpicprog.org/
+* https://github.com/rweather/ardpicprog
 
 
 # Debug
 
-There isn't opensource ICE solution exist for PIC.
+There isn't opensource debug software exist for PIC. you can use 'mdb' - the official pic debugger program of Microchip shipped with MPLABX IDE from command line, it's not opensource, please find out the usage by yourself.
 
-But you can have a try of [picsim](https://github.com/lcgamboa/picsim) and [picsimlab](https://github.com/lcgamboa/picsimlab) with very limited hardware support.
-
-
-
+And you can also have a try of [picsim](https://github.com/lcgamboa/picsim) and [picsimlab](https://github.com/lcgamboa/picsimlab) with very limited hardware support.
