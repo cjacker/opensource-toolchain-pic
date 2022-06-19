@@ -10,9 +10,9 @@ For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrolle
 
 This tutorial focus on 8-bit PIC mcu. aka PIC12/PIC16/PIC18 series.
 
-By the way, MicroChip does not provide a 'free' and 'full-feature' and 'close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations, that means you have to buy a pro license.
+By the way, MicroChip does not provide a 'free' and 'full-feature' and 'close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.
 
-Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to get a feel of PIC MCU. 
+Here is tutorial about opensource toolchain of 8-bit PIC, if you wish to get a feel of PIC MCU. 
 
 # Hardware prerequist
 
