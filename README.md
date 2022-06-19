@@ -8,7 +8,7 @@ For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrolle
 
 This tutorial focus on 8-bit PIC mcu. aka PIC12/PIC16/PIC18 series.
 
-By the way, MicroChip seems do not care about "opensource" at all, it even does not provide a 'free' and 'full-feature' and 'close-source' compiler for 8-bit PIC. the offcial mplabX IDE use XC8 compiler, and with a free license you won't get the best optimizations, that means you have to buy a pro license.
+By the way, MicroChip does not provide a 'free' and 'full-feature' and 'close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations, that means you have to buy a pro license.
 
 Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to get a feel of PIC MCU. 
 
@@ -17,8 +17,10 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
 * a PIC12/PIC16/PIC18 dev board
   - If you need to buy new one, I recommend to check the list that the opensource toolchain can supported.
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
-  - In this tutorial, I use PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
-* [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer, prefer PICKIT2.
+  - In this tutorial, I will use PIC16F877, PIC16F690 (HVP), PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
+* [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer
+  - Prefer PICKIT2 for reliablity. with 'pk2cmd-minus', nearly all 8-bit PIC MCU can be supported by PICKIT2 or 3.
+  - You don't have to buy a PICKIT if your MCU supported by [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog) or [zeppp](https://github.com/battlecoder/zeppp), please check the device list of these projects.
 * Arduino uno or nano as programmer
 
 # Toolchain overview
@@ -26,8 +28,11 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
 * Compiler: gputils/SDCC for C and gcbasic for basic
   - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with Compiler
-* Programming tool: pk2cmd-minus (improved pk2cmd) with PICKIT2, pymcuprog with nEDBG, a-p-prog/zeppp with arduino (only LVP)
-* Debugger: NO opensource ICE solution
+* Programming tool:
+  - pk2cmd-minus (pk2cmd with improvement from opensource developers) with PICKIT2 or 3
+  - pymcuprog with nEDBG
+  - a-p-prog/zeppp with arduino (only LVP)
+* Debugger: NO opensource software solution
 
 # Compiler
 
