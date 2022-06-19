@@ -203,7 +203,7 @@ A 'blink.hex' will be generated in currect dir.
 
 pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, the support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/). 
 
-**Now [the improved pk2cmd](http://kair.us/projects/pickitminus/) has support for 1066 parts, supports nearly all, if not all, 8-bit PIC microcontrollers.**
+**Now [the improved pk2cmd - pk2cmd minus development by kair](http://kair.us/projects/pickitminus/) has support for 1066 parts, supports nearly all, if not all, 8-bit PIC microcontrollers.**
 
 For more info, please refer to http://kair.us/projects/pickitminus/.
 
@@ -239,10 +239,14 @@ sudo install -m0644 60-pickit.rules /etc/udev/rules.d/
 
 If you want to edit the PK2DeviceFile.dat, you can use [device file editor](https://sites.google.com/site/pk2devicefileeditor/) created by dougy83.
 
+If you don't mind to use the prebuilt version of pk2cmdminus, you can use http://kair.us/projects/pickitminus/pk2cmd-x86_64.AppImage directly.
+
+
 **To be written.**
 
 
 ## using zeppp with Arduino as PIC programmer
+
 [ZEPPP](https://github.com/battlecoder/zeppp) is a PIC programmer that requires only an Arduino-compatible board and a small command-line PC utility (CLI) to read, write, erase and verify several LVP-capable PIC microcontrollers via ICSP (In-Circuit Serial Programming).
 
 Currently ZEPPP supports the following PIC devices:
