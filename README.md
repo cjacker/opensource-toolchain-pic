@@ -28,12 +28,12 @@ Anyway, here is tutorial about opensource toolchain of 8-bit PIC, if you wish to
 # Toolchain overview
 
 * Compiler: gputils/SDCC for C and gcbasic for basic
-  - Since gputils and the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
+  - Since the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with Compiler
 * Programming tool:
-  - pk2cmd-minus (pk2cmd with improvement from opensource developers) with PICKIT2 or 3
+  - pk2cmd-minus (pk2cmd with improvement from various opensource developers) with PICKIT2 or 3
   - pymcuprog with nEDBG
-  - a-p-prog/zeppp with arduino (only LVP)
+  - a-p-prog/zeppp with Arduino (only LVP)
 * Debugger: NO opensource software solution
 
 # Compiler
