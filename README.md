@@ -74,7 +74,7 @@ A patch needed to build gcbasic successfully, the patch 'gcbasic-0.99.01-build-f
 
 After installation, you should have `gcbasic` command on your PATH.
 
-By the way, the source file suffix of gcbasic is 'gcb', it can not be detect automatically as basic source file by editors. for example, you can add
+By the way, the source file suffix of gcbasic is 'gcb', it can not be detect automatically as basic source file by editors. for vim, you can add
 
 ```
 autocmd BufNewFile,BufRead *.gcb set syntax=basic
