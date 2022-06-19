@@ -208,7 +208,7 @@ pk2cmd is the official open-source program tool work with PICKIT2, updates by [M
 
 For more info, please refer to http://kair.us/projects/pickitminus/.
 
-For All parts pk2cmdminus supported, please refer to [the parts list](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt).
+For All parts pk2cmd-minus supported, please refer to [the parts list](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt).
 
 Build:
 
