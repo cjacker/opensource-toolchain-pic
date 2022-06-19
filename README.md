@@ -210,7 +210,22 @@ For more info, please refer to http://kair.us/projects/pickitminus/.
 
 For All parts pk2cmd-minus supported, please refer to [the parts list](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt).
 
-Build:
+
+I make a fork to improve the installation process:
+
+```
+git clone https://github.com/cjacker/pk2cmd-minus
+cd pk2cmd-minus
+make
+sudo make install
+```
+
+Then you should have 'pk2cmd' and 'pk2-device-file-editor' in your PATH, other resources will be installed to proper dir automatically.
+
+To run 'pk2-device-file-editor', you should have mono and mono-basic installed.
+
+
+If you want to build it from [the upstream source code](http://kair.us/projects/pickitminus/):
 
 ```
 mkdir build && cd build
@@ -245,6 +260,7 @@ sudo install -m0644 60-pickit.rules /etc/udev/rules.d/
 If you want to edit the 'PK2DeviceFile.dat' to add new devices, you can use [device file editor](https://sites.google.com/site/pk2devicefileeditor/) created by dougy83.
 
 If you don't mind to use the prebuilt binary of pk2cmd-minus, you can use http://kair.us/projects/pickitminus/pk2cmd-x86_64.AppImage directly.
+
 
 
 **To be written.**
