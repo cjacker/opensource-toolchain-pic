@@ -204,14 +204,11 @@ A 'blink.hex' will be generated in currect dir.
 
 pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, the support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/). 
 
-**['pk2cmd minus' developed by kair](http://kair.us/projects/pickitminus/) has support for 1066 parts, supports nearly all, if not all, 8-bit PIC microcontrollers.**
+**['pk2cmd minus' developed by kair](http://kair.us/projects/pickitminus/) has support for [1066 parts](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt), supports nearly all, if not all, 8-bit PIC microcontrollers.**
 
 For more info, please refer to http://kair.us/projects/pickitminus/.
 
-For All parts pk2cmd-minus supported, please refer to [the parts list](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt).
-
-
-I make a fork to improve the installation process:
+I make a fork to improve the installation process and other minor changes:
 
 ```
 git clone https://github.com/cjacker/pk2cmd-minus
