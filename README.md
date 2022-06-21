@@ -10,9 +10,9 @@ For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrolle
 
 **MicroChip does not provide a 'free'/'full-feature'/'even close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.**
 
-**By the way, MicroChip's xc32 compiler for PIC32 is based on GCC, but the opensource attitude of MicroChip is ridiculous, they try them best to add a license control to GCC, and try them best to let the opensourced codes can not be built. For such short sighted behavior, the best choice is to avoid using such product. Actually, PIC32 is really outdated, evey MicroChip itself start to pruduct ARM based PIC32 MCU.**
+**By the way, MicroChip's xc32 compiler for PIC32 is based on GCC, but the opensource attitude of MicroChip is ridiculous, they try them best to add a license control to GCC, and try them best to let the opensourced codes can not be built. For such short sighted behavior, the best choice is to avoid using such product. Actually, PIC32 is really outdated, even MicroChip itself start to product ARM based PIC32 MCU.**
 
-**Recently, after MicroChip aquired ATMEL, they start to add AVR support into their private/close-source/not-free xc8 compiler, I really can not imagine what will happened to AVR eco-system in future......**
+**And after MicroChip aquired ATMEL, they start to add AVR support into their private/close-source/not-free xc8 compiler, I really can not imagine what will happened to AVR eco-system in future......**
 
 Anyway, here is tutorial about opensource toolchain of 8-bit PIC (pic12/16/18 series), if you wish to get a feel of PIC MCU.
 
@@ -213,6 +213,8 @@ A 'blink.hex' will be generated in currect dir.
 # Programming
 
 ## using pk2cmd-minus with PICKIT2 or PICKIT3
+
+**If you have a PICKIT2, it's not neccesary to find other program solutions, PICKIT2 with pk2cmd-minus can support programming almost all 8-bit PIC MCU**
 
 pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, the support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/). 
 
