@@ -21,7 +21,7 @@ Here is tutorial about opensource toolchain of 8-bit PIC, if you wish to get a f
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
   - In this tutorial, I will use PIC16F877, PIC16F690 (HVP), PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
 * [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer
-  - Prefer PICKIT2 for reliablity. with 'pk2cmd-minus', nearly all 8-bit PIC MCU can be supported by PICKIT2 or 3.
+  - Prefer PICKIT2 or clones for reliablity and price. with 'pk2cmd-minus', nearly all 8-bit PIC MCU can be supported by PICKIT2 or 3.
   - You don't have to buy a PICKIT if your MCU supported by [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog) or [zeppp](https://github.com/battlecoder/zeppp), please check the device list of these projects.
 * Arduino uno or nano as programmer
 
