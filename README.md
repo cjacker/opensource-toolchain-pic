@@ -6,9 +6,9 @@ PIC (usually pronounced as "pick") is a family of microcontrollers made by Micro
 
 PIC micro chips are designed with a Harvard architecture, and are offered in various device families. The baseline and mid-range families use 8-bit wide data memory, and the high-end families use 16-bit data memory. The latest series, PIC32MZ is a 32-bit MIPS-based microcontroller. Instruction words are in sizes of 12-bit (PIC10 and PIC12), 14-bit (PIC16) and 24-bit (PIC24 and dsPIC). The binary representations of the machine instructions vary by family and are shown in PIC instruction listings.
 
-For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrollers
+For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrollers.
 
-**MicroChip does not provide a 'free'/'full-feature'/'even close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain. **
+**MicroChip does not provide a 'free'/'full-feature'/'even close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.**
 
 **By the way, MicroChip's xc32 compiler for PIC32 is based on GCC, but the opensource attitude of MicroChip is ridiculous, they try them best to add a license control to GCC, and try them best to let the opensourced codes can not be built. For such short sighted behavior, the best choice is to avoid using such product. Actually, PIC32 is really outdated, evey MicroChip itself start to pruduct ARM based PIC32 MCU.**
 
