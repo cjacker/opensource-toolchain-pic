@@ -8,11 +8,15 @@ PIC micro chips are designed with a Harvard architecture, and are offered in var
 
 For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrollers
 
-This tutorial focus on 8-bit PIC mcu. aka PIC12/PIC16/PIC18 series.
+MicroChip does not provide a 'free'/'full-feature'/'even close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain. 
 
-By the way, MicroChip does not provide a 'free' and 'full-feature' and 'close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.
+By the way, MicroChip's xc32 compiler for PIC32 is based on GCC, but the opensource attitude of MicroChip is ridiculous, they try them best to add a license control to GCC, and try them best to let the opensourced codes can not be built. For such short sighted behavior, the best choice is to avoid using such product. Actually, PIC32 is really outdated, evey MicroChip itself start to pruduct ARM based PIC32 MCU.
 
-Here is tutorial about opensource toolchain of 8-bit PIC, if you wish to get a feel of PIC MCU. 
+Recently, after MicroChip aquired ATMEL, they start to add AVR support into their private/close-source/not-free xc8 compiler, I really can not imagine what will happened to AVR eco-system in future......
+
+Anyway, here is tutorial about opensource toolchain of 8-bit PIC (pic12/16/18 series), if you wish to get a feel of PIC MCU.
+
+Thanks for opensource community, we have completely open source toolchain for PIC 8-bit MCU.
 
 # Hardware prerequist
 
