@@ -1,19 +1,35 @@
-' Curiosity Nano DM164150 with PIC18F57Q43
+' CJMCU PIC16F690:
+' onboard LED connect to PortA.2
+
+' CJMCU PIC16F1823:
+' onboard LED connect to PortC.0
+
+' Curiosity Nano DM164150 with PIC18F57Q43:
 ' onboard LED connect to PortF.3
 
-' ----- Configuration
-#CHIP 18f57q43 
+' DM164130-4 - PICKIT 44-PIN DEMO BOARD (PIC18F45K20)
+' onboard LED connect to PortD.7 
 
-' Comment above line and uncomment this line to build for 16F1823
+' ----- Configuration
+#CHIP 16f690
 '#CHIP 16f1823
+'#CHIP 18f45k20
+'#CHIP 18f57q43 
 
 Do Forever
+    ' Lighten LED for 100ms
 
-    'Lighten LED for 100ms
-    PulseOut PortF.3, 100 ms
+    ' for CJMCU PIC16F690
+    PulseOut PortA.2, 100 ms
 
-		' Comment above line and uncomment this line for 16F1823
+    ' for CJMCU PIC16F1823
     'PulseOut PortC.0, 100 ms
+
+    ' for Curiosity Nano DM164150
+    'PulseOut PortF.3, 100 ms
+
+    ' for DM164130-4 - PICKIT 44-PIN DEMO BOARD (PIC18F45K20)
+    'PulseOut PortD.7, 100 ms
 
     'Then wait 900 milliseconds after LED goes off:
     Wait 900 ms
