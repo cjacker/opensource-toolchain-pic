@@ -181,8 +181,9 @@ Below is a gcbasic example to blink led connected to F.3:
 
 ' ----- Configuration
 #CHIP 18f57q43
-' Comment out above line and uncomment this line to build for 16F1823
+' Comment out above line and uncomment this line to build for 16F1823/16f690
 '#CHIP 16f1823
+'#CHIP 16f690
 
 Do Forever
 
@@ -281,7 +282,7 @@ OS Update Successful.
 
 Operation Succeeded
 ```
-NOTE there is no 'blank' between '-D' and '/usr/share/pk2/PK2V023200.hex'.
+NOTE there is no 'blank' between '-D' and '/usr/share/pk2/PK2V023200.hex', and this firmware is for PICKIT2, you need to find corresponding firmware for PICKIT3 in '/usr/share/pk2' dir.
 
 
 To detect target device:
