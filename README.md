@@ -265,10 +265,91 @@ If you want to edit the 'PK2DeviceFile.dat' to add new devices, you can use [dev
 
 If you don't mind to use the prebuilt binary of pk2cmd-minus, you can use http://kair.us/projects/pickitminus/pk2cmd-x86_64.AppImage directly.
 
+The PICKIT2 6pin header's pin out as:
+
+<img src="https://user-images.githubusercontent.com/1625340/174710601-8f6d12c7-84ff-4ae8-9be7-a9aa1e1cbf88.jpg" width="40%"/>
+
+Refer to datasheet to connect pins respectively, usually the 6 pin is not used.
+
+To update PICKIT2 firmware:
+```
+$ pk2cmd -D/usr/share/pk2/PK2V023200.hex
+Downloading OS...
+Verifying new OS...
+Resetting PICkit 2...
+OS Update Successful.
+
+Operation Succeeded
+```
+NOTE there is no 'blank' between '-D' and '/usr/share/pk2/PK2V023200.hex'.
 
 
-**To be written.**
+To detect target device:
+```
+$ pk2cmd -P
+Auto-Detect: Found part PIC16F690.
 
+Operation Succeeded
+```
+
+Now we know which PIC we have connected (odds are that we knew this already).
+
+
+To erase target device:
+```
+$ pk2cmd -P PIC16F690 -X -E
+Erasing Device...
+
+Operation Succeeded
+```
+
+Note that the device name from the auto-detection is now placed after the -P argument. Two new arguments is supplied now. -X tells the PICKit2 to "Use VPP first Program Entry Method", you may omit it. -E tells pk2cmd to erase the connected PIC.
+
+To program target device:
+```
+$ pk2cmd -PPIC16F690 -M -F blink.hex
+PICkit Program Report
+21-6-2022, 11:39:46
+Device Type: PIC16F690
+
+Program Succeeded.
+
+Operation Succeeded
+```
+
+Two new arguments again. -M tells pk2cmd to actually program the PIC. -F tells pk2cmd which file to use. The -M argument can actually also be either -MP, -ME, -MI or -MC to program only Program memory, EEPROM, ID memory or Configuration memory respectively but for most cases you will program the entire PIC using -M.
+
+To verify:
+```
+$ pk2cmd -P PIC16F690 -Y -F blink.hex
+PICkit 2 Verify Report
+21-6-2022, 11:40:58
+Device Type: PIC16F690
+
+Verify Succeeded.
+
+Operation Succeeded
+```
+The argument -Y tells pk2cmd to verify the PIC's memory with the HEX file given by -F. Again the -Y argument can address different areas just as the -M argument by setting either -YP, -YE, -YI or -YC to verify a specific region only.
+
+
+**By default, PICKIT2 doesn't supply power to target device, you can turn on the 'VDD' as:**
+
+To power on target device
+```
+$ pk2cmd -P PIC16F690 -T
+
+Operation Succeeded
+```
+
+To power off
+```
+$ pk2cmd -P PIC16F690
+
+Operation Succeeded
+```
+
+Please try to run `pk2cmd` directly for more help infomation.
 
 ## using zeppp with Arduino as PIC programmer
 
