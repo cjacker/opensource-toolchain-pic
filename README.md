@@ -316,9 +316,6 @@ Auto-Detect: Found part PIC16F690.
 Operation Succeeded
 ```
 
-Now we know which PIC we have connected (odds are that we knew this already).
-
-
 To erase target device:
 ```
 $ pk2cmd -P PIC16F690 -X -E
