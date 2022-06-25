@@ -26,7 +26,7 @@ Thanks for opensource community, we have completely open source toolchain for PI
   - In this tutorial, I will use PIC16F877, PIC16F690 (HVP), PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
 * [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer
   - Prefer PICKIT2 or clones for reliablity and price. with 'pk2cmd-minus', nearly all 8-bit PIC MCU can be supported by PICKIT2 or 3.
-  - You don't have to buy a PICKIT if your MCU supported by [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog) or [zeppp](https://github.com/battlecoder/zeppp), please check the device list of these projects.
+  - You don't have to buy a PICKIT if your MCU supported by [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog), please check the device list of 'a-p-prog' project.
 * Arduino uno or nano as programmer
 
 # Toolchain overview
@@ -37,7 +37,7 @@ Thanks for opensource community, we have completely open source toolchain for PI
 * Programming tool:
   - pk2cmd-minus (pk2cmd with improvement from various opensource developers) with PICKIT2 or 3
   - pymcuprog with nEDBG
-  - a-p-prog/zeppp with Arduino (only LVP)
+  - a-p-prog with Arduino (only LVP)
 * Debugger: NO opensource software solution
 
 # Compiler
@@ -377,71 +377,6 @@ Operation Succeeded
 ```
 
 Please try to run `pk2cmd` directly for more help infomation.
-
-## using zeppp with Arduino as PIC programmer
-
-[ZEPPP](https://github.com/battlecoder/zeppp) is a PIC programmer that requires only an Arduino-compatible board and a small command-line PC utility (CLI) to read, write, erase and verify several LVP-capable PIC microcontrollers via ICSP (In-Circuit Serial Programming).
-
-Currently ZEPPP supports the following PIC devices:
-
-* 16F87, 16F88
-* 16F627A, 16F628A, 16F648A
-* 16F873A, 16F874A, 16F876A, 16F877A
-* 16F870, 16F871, 16F872, 16F873, 16F874, 16F876, 16F877
-* 16F882, 16F883, 16F884, 16F886, 16F887
-  + Calibration word and PGM block writes not yet supported in this family of microcontrollers.
-
-And can work with all the memory areas from the supported PICs (Program memory, EEPROM, Config words and User IDs).
-
-Here I make a fork to fix some issues, prepare a UNO or NANO and upload 'ZEPPP' sketch to it, you need to have 'arduino-cli' installed:
-
-```
-git clone https://github.com/battlecoder/zeppp.git
-# to support PIC16F887
-git checkout experimental/PIC16F88X
-
-cd zeppp/ZEPPP
-make upload TARGET=nano -f Makefile.linux
-```
-
-If you use Arduino UNO, change 'TARGET=nano' to 'TARGET=uno'.
-
-If you want to build ZEPPP-cli instead of using pre-built 'zeppp-cli.jar':
-
-```
-cd ZEPPP-cli
-mvn clean package
-```
-
-Then wire it up as:
-
-```
-+--------------+      +--------------+       +----------------+
-|              |      |    Arduino   |       |      PIC       |
-|              |      |        (5V)  +-------+ (VCC)          |
-|              |      |              |       |                |
-|              |      |        (GND) +-------+ (GND)          |
-|              | USB  |              |       |                |
-|      PC      +------+        (D6)  +-------+ (MCLR)         |
-|              |      |              |       |                |
-|              |      |        (D7)  +-------+ (PGD)          |
-|              |      |              |       |                |
-|              |      |        (D8)  +-------+ (PGC)          |
-|              |      |              |       |                |
-|              |      |        (D9)  +-------+ (PGM)          |
-|              |      |              |       |                |
-+--------------+      +--------------+       +----------------+
-```
-
-**NOTE:** if the target is not 5V voltage tolarence, you should supply the power seperately.
-
-Then program it:
-```
-java -jar zeppp-cli.jar -c /dev/ttyUSB0 -wait 2000 -i blink.hex -p -va
-```
-
-For more usage of zeppp-cli, please refer to https://github.com/battlecoder/zeppp.
-
 
 ## using a-p-prog with Arduino as PIC programmer
 
