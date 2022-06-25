@@ -1,4 +1,5 @@
 TARGET=16f690
+#TARGET=16f877a
 #TARGET=16f1823
 #TARGET=cnano_18f57q43
 #TARGET=18f45k20
@@ -18,7 +19,7 @@ ifeq ($(MCU_TYPE), cnano_18f57q43)
 else
 # using a-p-prog with arduino to program
 #pp3 -t $(TARGET) blink.hex -c /dev/ttyUSB0
-	pk2cmd -P pic$(TARGET) -M -F blink.hex -T
+	pk2cmd -P pic$(TARGET) -M -R -T -F blink.hex
 endif
 
 clean:
