@@ -328,7 +328,7 @@ Note that the device name from the auto-detection is now placed after the -P arg
 
 To program target device:
 ```
-$ pk2cmd -PPIC16F690 -M -F blink.hex
+$ pk2cmd -PPIC16F690 -M -F blink.hex -R -T
 PICkit Program Report
 21-6-2022, 11:39:46
 Device Type: PIC16F690
@@ -353,6 +353,12 @@ Operation Succeeded
 ```
 The argument -Y tells pk2cmd to verify the PIC's memory with the HEX file given by -F. Again the -Y argument can address different areas just as the -M argument by setting either -YP, -YE, -YI or -YC to verify a specific region only.
 
+
+To release MCLR:
+
+```
+$ pk2cmd -P PIC16F690 -R
+```
 
 **By default, PICKIT2 doesn't supply power to target device, you can turn on the 'VDD' as:**
 
