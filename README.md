@@ -34,6 +34,7 @@ Thanks for opensource community, we have completely open source toolchain(withou
 * Compilers: 
   - gputils/SDCC for C
   - gcbasic for basic
+  - jalv2 for jal
   - Since the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
 * SDK: integrated with compilers
 * Programming tool:
@@ -89,6 +90,49 @@ autocmd BufNewFile,BufRead *.gcb set syntax=basic
 ```
 
 to `~/.vimrc`.
+
+## JALV2
+
+[JALV2](http://www.justanotherlanguage.org) is a high level language designed to hide the general nuisance of programming a MicroChip PIC processor. The language is loosely based on Pascal. The compiler is available for Window and Linux both as 32-bit or 64-bit executable.
+
+JALV2 can be downloaded from https://github.com/jallib/jalv2compiler.
+
+The build process is very simple:
+
+```
+git clone https://github.com/jallib/jalv2compiler.git
+cd jalv2compiler
+chmod +x src/jal/build.sh
+chmod +x src/make_64
+# avoid treat warnings as errors for some gcc version.
+sed -i 's/-Werror//g' src/Makefile.inc
+cd src
+./make_64
+sudo install ../bin/jalv2-x86-64 /usr/bin/jalv2
+```
+
+For 32bit linux, you need change `make_64` to `make_32`.
+
+After building successfully, `bin/jalv2-x86-64` will be generated, this is the JALV2 Compiler. It's only the compiler, you still need the 'jallib' (include a lot of device include files) installed.
+
+Jallib can be downloaded from https://github.com/jallib/jallib. But I suggest you download the release archive from official site, the release archive also contains all source codes, but flatten the library files, sample files into one dir:
+
+```
+wget http://www.justanotherlanguage.org/sites/default/files/ftp_server/builds/release/jallib-1.7.0.zip
+sudo mkdir /opt/jallib
+sudo unzip jallib-1.7.0.zip -d /opt/jallib
+```
+
+The release archive (even the git repos) contains prebuilt binaries, delete all of them and use the compiler built from source:
+
+```
+sudo rm /opt/jallib/compiler/*.exe
+sudo rm /opt/jallib/compiler/jalv2-osx
+sudo rm /opt/jallib/compiler/jalv2-i686
+sudo rm /opt/jallib/compiler/jalv2-x86-64
+```
+
+Now, the `jalv2` compiler installed at `/usr/bin/jalv2` and `jallib` installed at `/opt/jallib`.
 
 
 # SDK
@@ -180,7 +224,7 @@ By the way, it's not neccesary to look into the codes seriously at this time. ev
 
 ## GCBASIC
 
-Below is a gcbasic example to blink led connected to F.3:
+Below is a gcbasic example to blink led:
 
 ```basic
 ' CJMCU PIC16F690:
@@ -226,6 +270,77 @@ Build it as:
 
 ```
 makehex.sh blink.gcb
+```
+
+A 'blink.hex' will be generated in currect dir.
+
+## JALV2
+
+Below is a jalv2 example for PIC16F1823 to blink led connect to A.2, it's modified from '16f1823_blink_intosc.jal' in 'jallib/sample` dir:
+
+```
+include 16f1823                     -- target PICmicro
+--
+-- This program uses the internal oscillator at 4 MHz.
+pragma target clock    4_000_000       -- oscillator frequency
+--
+pragma target OSC      INTOSC_NOCLKOUT           -- internal oscillator
+pragma target PLLEN    DISABLED                  -- PLL off
+pragma target CLKOUTEN DISABLED                  -- no clock output
+pragma target WDT      DISABLED                  -- watchdog
+pragma target BROWNOUT DISABLED                  -- no brownout reset
+pragma target FCMEN    DISABLED                  -- no clock monitoring
+pragma target IESO     DISABLED                  -- no int/ext osc switching
+pragma target LVP      ENABLED                   -- low voltage programming
+pragma target MCLR     EXTERNAL                  -- external reset
+--
+-- The configuration bit settings above are only a selection, sufficient
+-- for this program. Other programs may need more or different settings.
+--
+OSCCON_SCS = 0                      -- select primary oscillator
+OSCCON_IRCF = 0b1101                -- 4 MHz
+OSCCON_SPLLEN = FALSE               -- software PLL off
+--
+enable_digital_io()                 -- make all pins digital I/O
+--
+-- A low current (2 mA) led with 2.2K series resistor is recommended
+-- since the chosen pin may not be able to drive an ordinary 20mA led.
+--
+alias  led       is pin_A2          -- alias for pin with LED
+--
+pin_A2_direction = OUTPUT
+--
+forever loop
+   led = ON
+   _usec_delay(100_000)
+   led = OFF
+   _usec_delay(400_000)
+end loop
+```
+
+Build it as:
+
+```
+jalv2 blink.jal -s /opt/jallib/lib
+```
+
+The output looks like:
+
+```
+jal jalv2compiler-jalv25r6
+generating p-code
+11995 tokens, 112596 chars; 2404 lines; 3 files
+generating PIC code pass 1
+generating PIC code pass 2
+7 branches checked, 0 errors
+27 data accesses checked, 0 errors
+6 skips checked, 0 errors
+writing result
+Code area: 67 of 2048 used (words)
+Data area: 4 of 128 used
+Software stack available: 91 bytes
+Hardware stack depth 0 of 16
+0 errors, 0 warnings
 ```
 
 A 'blink.hex' will be generated in currect dir.
