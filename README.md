@@ -264,22 +264,22 @@ wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-
 unzip PK2CMD_SourceV1_23_04.zip
 
 # apply global database file path patch
-cat pk2_devicefile_osfile_paths.patch | patch -p1 -d PK2CMD_SourceV1_23_00
+cat pk2_devicefile_osfile_paths.patch | patch -p1 -d PK2CMD_SourceV1_23_04
 
-cd PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd
+cd PK2CMD_SourceV1_23_04/pk2cmd/pk2cmd
 make linux
 cd ../../../
 
 # install cmd
-sudo install -m0755 PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/pk2cmd /usr/bin
+sudo install -m0755 PK2CMD_SourceV1_23_04/pk2cmd/pk2cmd/pk2cmd /usr/bin
 
 sudo mkdir -p /usr/share/pk2
 
 # install device database
-sudo install -m0644 PK2CMD_SourceV1_23_00/pk2cmd/pk2cmd/PK2DeviceFile.dat /usr/share/pk2/
+sudo install -m0644 PK2CMD_SourceV1_23_04/pk2cmd/pk2cmd/PK2DeviceFile.dat /usr/share/pk2/
 
 # install adapter firmware
-sudo cp PK2CMD_SourceV1_23_00/pk2cmd/release/*.hex /usr/share/pk2/
+sudo cp PK2CMD_SourceV1_23_04/pk2cmd/release/*.hex /usr/share/pk2/
 
 # install udev rule to avoid using sudo
 sudo install -m0644 60-pickit.rules /etc/udev/rules.d/
@@ -459,7 +459,7 @@ These years, MicroChip officially provide some Curiosity Nano boards of PIC or A
 
 With such a board, you do NOT need to buy a PICKIT, it can be programmed with 'pymcuprog' directly.
 
-I have a DM164150 CNANO baord with PIC18F57Q43, and it can not supported by SDCC (device headers is not include in SDCC), thus I use the gcbasic to build a blink demo for it (refer to above gcbasic section for example code).
+I have a DM164150 CNANO baord with PIC18F57Q43(by the way, it can be supported with pk2cmdminus and PICKIT2), and it can not supported by SDCC (device headers is not include in SDCC), thus I use the gcbasic to build a blink demo for it (refer to above gcbasic section for example code).
 
 After 'blink.hex' generated, '[pymcuprog](https://github.com/microchip-pic-avr-tools/pymcuprog)' from MicroChip can be used to program it.
 
