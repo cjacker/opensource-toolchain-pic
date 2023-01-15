@@ -136,6 +136,7 @@ sudo rm /opt/jallib/compiler/*.exe
 sudo rm /opt/jallib/compiler/jalv2-osx
 sudo rm /opt/jallib/compiler/jalv2-i686
 sudo rm /opt/jallib/compiler/jalv2-x86-64
+sudo rm -r /opt/jallib/compiler/other_versions
 ```
 
 Now, the `jalv2` compiler installed at `/usr/bin/jalv2` and `jallib` installed at `/opt/jallib`.
