@@ -93,6 +93,7 @@ to `~/.vimrc`.
 
 ## JALV2
 
+### jalv2 compiler
 [JALV2](http://www.justanotherlanguage.org) is a high level language designed to hide the general nuisance of programming a MicroChip PIC processor. The language is loosely based on Pascal. The compiler is available for Window and Linux both as 32-bit or 64-bit executable.
 
 JALV2 can be downloaded from https://github.com/jallib/jalv2compiler.
@@ -115,6 +116,11 @@ For 32bit linux, you need change `make_64` to `make_32`.
 
 After building successfully, `bin/jalv2-x86-64` will be generated, this is the JALV2 Compiler. It's only the compiler, you still need the 'jallib' (include a lot of device include files) installed.
 
+By the way, there are some pre-generated documents in `documentation/external` dir, include 'An Introduction & Guide to JALV2'(jalv2.pdf), 'JALv2 Compiler Options'(jalv2opt.pdf), 'JALv2 PRAGMAs'(jalv2pragma.pdf), you can take them as reference to learn JALV2.
+
+And there is also [a tutorial of JALV2](http://www.justanotherlanguage.org/sites/default/files/ftp_server/jallib_files/Jallib_Tutorial_Book.pdf) from official site.
+
+### jallib
 Jallib can be downloaded from https://github.com/jallib/jallib. But I suggest you download the release archive from official site, the release archive also contains all source codes, but flatten the library files, sample files into one dir:
 
 ```
