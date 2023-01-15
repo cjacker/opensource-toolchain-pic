@@ -294,7 +294,17 @@ The PICKIT2 6pin header's pin out as:
 
 <img src="https://user-images.githubusercontent.com/1625340/174710601-8f6d12c7-84ff-4ae8-9be7-a9aa1e1cbf88.jpg" width="40%"/>
 
-Refer to datasheet to connect pins respectively, usually the 6th pin is not used.
+Refer to part's datasheet to connect pins respectively, usually the 6th pin is not used.
+
+For example, the PIC16F1823 pinout is:
+
+<img src="https://user-images.githubusercontent.com/1625340/212552662-33213990-6c6c-4f68-aded-acec54e9dd82.png" width="40%"/>
+
+and the PIC16F690 pinout is:
+
+<img src="https://user-images.githubusercontent.com/1625340/212552708-4801ad3f-3160-45e7-a292-a0cb260e82c5.png" width="40%"/>
+
+
 
 To update PICKIT2 firmware:
 ```
