@@ -33,12 +33,12 @@ Thanks for opensource community, we have completely open source toolchain(withou
 
 * Compilers: 
   - gputils/SDCC for C
-  - gcbasic for basic
-  - jalv2 for jal
-  - Since the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
+  - GCBasic for basic
+  - JALV2 for jal
+  - Since the PIC part of SDCC is un-maintained now, Maybe gcbasic or JALV2 for PIC development is better choice.
 * SDK: integrated with compilers
 * Programming tool:
-  - pk2cmd-minus (pk2cmd with improvements) with PICKIT2 or 3 adapter
+  - pk2cmd-minus with PICKIT2 or 3, **recommended**
   - pymcuprog with nEDBG
   - a-p-prog with Arduino (only work with some LVP parts)
 * Debugger: **NO opensource software solution**
@@ -140,7 +140,6 @@ sudo rm -r /opt/jallib/compiler/other_versions
 ```
 
 Now, the `jalv2` compiler installed at `/usr/bin/jalv2` and `jallib` installed at `/opt/jallib`.
-
 
 # SDK
 
@@ -283,7 +282,7 @@ A 'blink.hex' will be generated in currect dir.
 
 ## JALV2
 
-Below is a jalv2 example for PIC16F1823 to blink led connect to A.2, it's modified from '16f1823_blink_intosc.jal' in 'jallib/sample` dir:
+Below is a JALV2 example for PIC16F1823 to blink led connect to pin A.2, it's modified from '16f1823_blink_intosc.jal' in 'jallib/sample` dir:
 
 ```
 include 16f1823                     -- target PICmicro
