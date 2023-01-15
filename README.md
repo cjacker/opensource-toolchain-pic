@@ -8,39 +8,41 @@ PIC micro chips are designed with a Harvard architecture, and are offered in var
 
 For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrollers.
 
-**MicroChip does not provide a 'free'/'full-feature'/'even close-source' compiler for 8-bit PIC. the offcial MPLABX IDE use XC8 compiler, and with a free license you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.**
+**MicroChip does not provide a 'free,full-feature' compiler for 8-bit PIC, even without 'close-source, full-feature' compiler. the offcial MPLABX IDE use XC8 compiler, and with a free license, you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.**
 
-**By the way, MicroChip's xc32 compiler for PIC32 is based on GCC, but the opensource attitude of MicroChip is ridiculous, they try them best to add a license control to GCC, and try them best to let the opensourced codes can not be built. For such short sighted behavior, the best choice is to avoid using such product. Actually, PIC32 is really outdated, even MicroChip itself start to product ARM based PIC32 MCU.**
+**By the way, MicroChip's xc32 compiler for PIC32 is based on GCC, but the opensource attitude of MicroChip is ridiculous, they tried them best to add a license control to GCC, and tried them best to let the opensourced codes can not be built. For such short sighted behavior, the best choice is to avoid using such product. Actually, PIC32 is really a little bit outdated, even MicroChip itself start to produce ARM based PIC32 MCU.**
 
-**And after MicroChip aquired ATMEL, they start to add AVR support into their private/close-source/not-free xc8 compiler, I really can not imagine what will happened to AVR eco-system in future......**
+**And after MicroChip aquired ATMEL, they started to add AVR support into their private/close-source/not-free xc8 compiler, I really can not imagine what will happened to AVR eco-system in future......**
 
 Anyway, here is tutorial about opensource toolchain of 8-bit PIC (pic12/16/18 series), if you wish to get a feel of PIC MCU.
 
-Thanks for opensource community, we have completely open source toolchain for PIC 8-bit MCU.
+Thanks for opensource community, we have completely open source toolchain(without debugging support) for PIC 8-bit MCU .
 
 # Hardware prerequist
 
 * a PIC12/PIC16/PIC18 dev board
-  - If you need to buy new one, I recommend to check the list that the opensource toolchain can supported.
+  - If you need to buy new one, I recommend to check the lists(from sdcc/gcbasic/jal/pk2cmd-minus) that the opensource toolchain can supported.
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
   - In this tutorial, I will use PIC16F877, PIC16F690 (HVP), PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
 * [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer
   - Prefer PICKIT2 or clones for reliablity and price. **with ['pk2cmd-minus'](http://kair.us/projects/pickitminus/), nearly all 8-bit PIC MCU can be supported by PICKIT2 or 3. Please check [the list](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt) to verify your PIC part is supported or not**
-  - You don't have to buy a PICKIT if your MCU supported by [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog), please check the device list of 'a-p-prog' project.
 * Arduino uno or nano as programmer
-
+  - You don't have to buy a PICKIT if your MCU supported by [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog), please check the device list of 'a-p-prog' project.
+  
 # Toolchain overview
 
-* Compiler: gputils/SDCC for C and gcbasic for basic
+* Compilers: 
+  - gputils/SDCC for C
+  - gcbasic for basic
   - Since the PIC part of SDCC is un-maintained now, I recommend gcbasic for PIC development.
-* SDK: integrated with Compiler
+* SDK: integrated with compilers
 * Programming tool:
-  - pk2cmd-minus (pk2cmd with improvement from various opensource developers) with PICKIT2 or 3
+  - pk2cmd-minus (pk2cmd with improvements) with PICKIT2 or 3 adapter
   - pymcuprog with nEDBG
-  - a-p-prog with Arduino (only LVP)
-* Debugger: NO opensource software solution
+  - a-p-prog with Arduino (only work with some LVP parts)
+* Debugger: **NO opensource software solution**
 
-# Compiler
+# Compilers
 
 ## SDCC
 
@@ -76,7 +78,7 @@ cd sources/linuxbuild
 sudo ./install.sh install
 ```
 
-A patch needed to build gcbasic successfully, the patch 'gcbasic-0.99.01-build-fix.patch' provided in this repo.
+A patch is needed to build gcbasic successfully, the patch 'gcbasic-0.99.01-build-fix.patch' provided in this repo.
 
 After installation, you should have `gcbasic` command on your PATH.
 
@@ -94,6 +96,7 @@ to `~/.vimrc`.
 ## SDCC
 
 The essential headers with pre-defined registers and libs already shipped with SDCC. Generally it divided into two sets: 'pic14' and 'pic16'.
+
 It's a little bit confusing about the 'pic14' and 'pic16' name. Actually, 'pic14' means '14bit instruction set' and 'pic16' means '16bit instruction set'. thus PIC12 and PIC16 series MCU should use 'pic14' sdk set and PIC18 series should use 'pic16' sdk set.
 
 Here is example code to blink led connect to RC0 of PIC16F1823 breakout board. Usually to blink a led with all sort of MCUs should follow below steps:
@@ -172,7 +175,7 @@ These msgs are generated by 'gputils' and can be ignored.
 
 After build successfully, a 'blink.hex' file will be generated in currect dir.
 
-By the way, it's not neccesary to look into the codes seriously at this time. every PIC model had it's own register set, although most of them are identical and most of the codes can be re-used, but the code you write for a model more likely is not compatible with other models, it always require some major or minor changes to work.
+By the way, it's not neccesary to look into the codes seriously at this time. every PIC model has it's own register set, although most of them are identical and most of the codes can be re-used, but the code you write for a model more likely is not compatible with other models, it always require some major or minor changes to work.
 
 
 ## GCBASIC
@@ -291,7 +294,7 @@ The PICKIT2 6pin header's pin out as:
 
 <img src="https://user-images.githubusercontent.com/1625340/174710601-8f6d12c7-84ff-4ae8-9be7-a9aa1e1cbf88.jpg" width="40%"/>
 
-Refer to datasheet to connect pins respectively, usually the 6 pin is not used.
+Refer to datasheet to connect pins respectively, usually the 6th pin is not used.
 
 To update PICKIT2 firmware:
 ```
