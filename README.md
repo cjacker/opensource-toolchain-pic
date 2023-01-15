@@ -25,7 +25,7 @@ Thanks for opensource community, we have completely open source toolchain for PI
   - 'Curiosity nano PIC board' from Microchip have an nEDBG debuger on board, it can be programmed with 'pymcuprog'.
   - In this tutorial, I will use PIC16F877, PIC16F690 (HVP), PIC16F1823(1825) and PIC18F45K20 as example, also use curiosity nano DM164150 with PIC18F57Q43 to demo 'pymcuprog'
 * [PICKIT 2 or 3](https://en.wikipedia.org/wiki/PICkit) as programmer
-  - Prefer PICKIT2 or clones for reliablity and price. with 'pk2cmd-minus', nearly all 8-bit PIC MCU can be supported by PICKIT2 or 3.
+  - Prefer PICKIT2 or clones for reliablity and price. **with ['pk2cmd-minus'](http://kair.us/projects/pickitminus/), nearly all 8-bit PIC MCU can be supported by PICKIT2 or 3. Please check [the list](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt) to verify your PIC part is supported or not**
   - You don't have to buy a PICKIT if your MCU supported by [a-p-prog](https://github.com/jaromir-sukuba/a-p-prog), please check the device list of 'a-p-prog' project.
 * Arduino uno or nano as programmer
 
@@ -231,11 +231,11 @@ A 'blink.hex' will be generated in currect dir.
 
 ## using pk2cmd-minus with PICKIT2 or PICKIT3
 
-**If you have a PICKIT2, it's not neccesary to find other program solutions, PICKIT2 with pk2cmd-minus can support programming almost all 8-bit PIC MCU**
+**PICKIT2 with pk2cmd-minus can support programming almost all 8-bit PIC MCU**
 
 pk2cmd is the official open-source program tool work with PICKIT2, updates by [Miklós Márton](https://github.com/martonmiklos/pk2cmd) to add support for PICkit3, the support for SPI-type MSB1st -family PICs is based on work by [bequest333](https://www.eevblog.com/forum/microcontrollers/pic16f18857-programming-with-pickit2/). 
 
-**['pk2cmd minus' developed by kair](http://kair.us/projects/pickitminus/) has support for [1066 parts](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt), supports nearly all, if not all, 8-bit PIC microcontrollers.**
+**['pk2cmd minus' developed by kair](http://kair.us/projects/pickitminus/) has support for [1203 parts](http://kair.us/projects/pickitminus/pk2cmdminus_supported_devices.txt), supports nearly all 8-bit PIC microcontrollers.**
 
 For more info, please refer to http://kair.us/projects/pickitminus/.
 
@@ -257,11 +257,11 @@ If you want to build it from [the upstream source code](http://kair.us/projects/
 
 ```
 mkdir build && cd build
-wget http://kair.us/projects/pickitminus/PK2CMD_SourceV1_23_00.zip
+wget http://kair.us/projects/pickitminus/PK2CMD_SourceV1_23_04.zip
 wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/pk2_devicefile_osfile_paths.patch
 wget https://raw.githubusercontent.com/cjacker/opensource-toolchain-pic/main/60-pickit.rules
 
-unzip PK2CMD_SourceV1_23_00.zip
+unzip PK2CMD_SourceV1_23_04.zip
 
 # apply global database file path patch
 cat pk2_devicefile_osfile_paths.patch | patch -p1 -d PK2CMD_SourceV1_23_00
@@ -287,8 +287,6 @@ sudo install -m0644 60-pickit.rules /etc/udev/rules.d/
 
 If you want to edit the 'PK2DeviceFile.dat' to add new devices, you can use [device file editor](https://sites.google.com/site/pk2devicefileeditor/) created by dougy83.
 
-If you don't mind to use the prebuilt binary of pk2cmd-minus, you can use http://kair.us/projects/pickitminus/pk2cmd-x86_64.AppImage directly.
-
 The PICKIT2 6pin header's pin out as:
 
 <img src="https://user-images.githubusercontent.com/1625340/174710601-8f6d12c7-84ff-4ae8-9be7-a9aa1e1cbf88.jpg" width="40%"/>
@@ -305,7 +303,7 @@ OS Update Successful.
 
 Operation Succeeded
 ```
-NOTE there is no 'blank' between '-D' and '/usr/share/pk2/PK2V023200.hex', and this firmware is for PICKIT2, you need to find corresponding firmware for PICKIT3 in '/usr/share/pk2' dir.
+NOTE there is no 'whitespace' between '-D' and '/usr/share/pk2/PK2V023200.hex', and this firmware is for PICKIT2, you need to find corresponding firmware for PICKIT3 in '/usr/share/pk2' dir.
 
 
 To detect target device:
