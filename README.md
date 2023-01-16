@@ -8,16 +8,30 @@ PIC micro chips are designed with a Harvard architecture, and are offered in var
 
 For more info, please refer to: https://en.wikipedia.org/wiki/PIC_microcontrollers.
 
-**MicroChip does not provide a 'free,full-feature' compiler for 8-bit PIC, even without 'close-source, full-feature' compiler. the offcial MPLABX IDE use XC8 compiler, and with a free license, you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.**
-
-**By the way, MicroChip's xc32 compiler for PIC32 is based on GCC, but the opensource attitude of MicroChip is ridiculous, they tried them best to add a license control to GCC, and tried them best to let the opensourced codes can not be built. For such short sighted behavior, the best choice is to avoid using such product. Actually, PIC32 is really a little bit outdated, even MicroChip itself start to produce ARM based PIC32 MCU.**
-
-**And after MicroChip aquired ATMEL, they started to add AVR support into their private/close-source/not-free xc8 compiler, I really can not imagine what will happened to AVR eco-system in future......**
+**MicroChip does not provide a 'free,full-feature' compiler for 8-bit PIC, even not provide a  'close-source, full-feature' compiler. the offcial MPLABX IDE use XC8 compiler, and with a free license, you won't get the best optimizations （up to and include O2 level）, that means you have to buy a pro license for better code optimizations or use opensource toolchain.**
 
 Anyway, here is tutorial about opensource toolchain of 8-bit PIC (pic12/16/18 series), if you wish to get a feel of PIC MCU.
 
-Thanks for opensource community, we have completely open source toolchain(without debugging support) for PIC 8-bit MCU .
+Thanks for opensource community, we have completely open source toolchain (but without debugging support) for PIC 8-bit MCU .
 
+# Table of content
+- [Hardware prerequist](https://github.com/cjacker/opensource-toolchain-pic#hardware-prerequist)
+- [Toolchain overview](https://github.com/cjacker/opensource-toolchain-pic#toolchain-overview)
+- [Compilers](https://github.com/cjacker/opensource-toolchain-pic#compilers)
+  + [SDCC](https://github.com/cjacker/opensource-toolchain-pic#sdcc)
+  + [GCBasic](https://github.com/cjacker/opensource-toolchain-pic#gcbasic)
+  + [JALV2](https://github.com/cjacker/opensource-toolchain-pic#jalv2)
+- [SDK](https://github.com/cjacker/opensource-toolchain-pic#sdk)
+  + [SDCC](https://github.com/cjacker/opensource-toolchain-pic#sdcc-1)
+  + [GCBasic](https://github.com/cjacker/opensource-toolchain-pic#gcbasic-1)
+  + [JALV2](hthttps://github.com/cjacker/opensource-toolchain-pic#other-program-solutionstps://github.com/cjacker/opensource-toolchain-pic#jalv2-1)
+- [Programming](https://github.com/cjacker/opensource-toolchain-pic#programming)
+  + [p2cmd minus with pickit 2 or 3](https://github.com/cjacker/opensource-toolchain-pic#using-pk2cmd-minus-with-pickit2-or-pickit3)
+  + [a-p-prog with arduino](https://github.com/cjacker/opensource-toolchain-pic#using-a-p-prog-with-arduino-as-pic-programmer)
+  + [pymcuprog with nEDBG](https://github.com/cjacker/opensource-toolchain-pic#using-pymcuprog-with-curiosity-nano-pic-board)
+  + [other program solutions](https://github.com/cjacker/opensource-toolchain-pic#other-program-solutions)
+- [Debug](https://github.com/cjacker/opensource-toolchain-pic#debug)
+  
 # Hardware prerequist
 
 * a PIC12/PIC16/PIC18 dev board
@@ -35,7 +49,6 @@ Thanks for opensource community, we have completely open source toolchain(withou
   - gputils/SDCC for C
   - GCBasic for basic
   - JALV2 for jal
-  - Since the PIC part of SDCC is un-maintained now, Maybe gcbasic or JALV2 for PIC development is better choice.
 * SDK: integrated with compilers
 * Programming tool:
   - pk2cmd-minus with PICKIT2 or 3, **recommended**
@@ -46,6 +59,8 @@ Thanks for opensource community, we have completely open source toolchain(withou
 # Compilers
 
 ## SDCC
+
+**NOTE:** PIC part of SDCC is un-maintained now, and maybe lack of new model support. It's not the best choice of OpenSource PIC toolchain.
 
 Most Linux distributions shipped SDCC in their repositories. You can install it by yum or apt.
 
@@ -73,13 +88,14 @@ To build gcbasic, you need to have freebasic installed. Build and install gcbasi
 
 ```
 cd GreatCowBASIC
+# If you use gcbasic-0.99.01, a patch is needed.
 cat gcbasic-0.99.01-build-fix.patch|patch -p1
 cd sources/linuxbuild
 ./install.sh build
 sudo ./install.sh install
 ```
 
-A patch is needed to build gcbasic successfully, the patch 'gcbasic-0.99.01-build-fix.patch' provided in this repo.
+A patch is needed to build gcbasic-0.99.01 successfully, and the patch 'gcbasic-0.99.01-build-fix.patch' provided in this repo. If you use the latest version of gcbasic, please omit this patch step.
 
 After installation, you should have `gcbasic` command on your PATH.
 
@@ -88,40 +104,45 @@ By the way, the source file suffix of gcbasic is 'gcb', it can not be detect aut
 ```
 autocmd BufNewFile,BufRead *.gcb set syntax=basic
 ```
-
 to `~/.vimrc`.
 
 ## JALV2
 
 ### jalv2 compiler
-[JALV2](http://www.justanotherlanguage.org) is a high level language designed to hide the general nuisance of programming a MicroChip PIC processor. The language is loosely based on Pascal. The compiler is available for Window and Linux both as 32-bit or 64-bit executable.
 
-JALV2 can be downloaded from https://github.com/jallib/jalv2compiler.
+[JALV2](http://www.justanotherlanguage.org) is a high level language designed to hide the general nuisance of programming a MicroChip PIC processor, The language is loosely based on Pascal. JALV2 and jallib is under active development.
 
-The build process is very simple:
+the source code of JALV2 compiler can be downloaded from https://github.com/jallib/jalv2compiler.
+
+building process is very simple:
 
 ```
 git clone https://github.com/jallib/jalv2compiler.git
 cd jalv2compiler
+
+# fix permission issues
 chmod +x src/jal/build.sh
 chmod +x src/make_64
-# avoid treat warnings as errors for some gcc version.
+
+# avoid treat warnings as errors for some new gcc version.
 sed -i 's/-Werror//g' src/Makefile.inc
+
+# build
 cd src
 ./make_64
+
+# install 
 sudo install ../bin/jalv2-x86-64 /usr/bin/jalv2
 ```
 
-For 32bit linux, you need change `make_64` to `make_32`.
+For 32bit linux, you need use `make_32` instead of `make_64`.
 
-After building successfully, `bin/jalv2-x86-64` will be generated, this is the JALV2 Compiler. It's only the compiler, you still need the 'jallib' (include a lot of device include files) installed.
+After building successfully, the JALV2 compiler `bin/jalv2-x86-64` will be generated, It's only the compiler, you still need the 'jallib' (include a lot of device include files) installed.
 
-By the way, there are some pre-generated documents in `documentation/external` dir, include 'An Introduction & Guide to JALV2'(jalv2.pdf), 'JALv2 Compiler Options'(jalv2opt.pdf), 'JALv2 PRAGMAs'(jalv2pragma.pdf), you can take them as reference to learn JALV2.
+By the way, there are some pre-generated documents in `documentation/external` dir, include 'An Introduction & Guide to JALV2'(jalv2.pdf), 'JALv2 Compiler Options'(jalv2opt.pdf), 'JALv2 PRAGMAs'(jalv2pragma.pdf), you can take them as reference to learn JALV2. And there is also [a tutorial of JALV2](http://www.justanotherlanguage.org/sites/default/files/ftp_server/jallib_files/Jallib_Tutorial_Book.pdf) from official site.
 
-And there is also [a tutorial of JALV2](http://www.justanotherlanguage.org/sites/default/files/ftp_server/jallib_files/Jallib_Tutorial_Book.pdf) from official site.
-
-### jallib
-Jallib can be downloaded from https://github.com/jallib/jallib. But I suggest you download the release archive from official site, the release archive also contains all source codes, but flatten the library files, sample files into one dir:
+### Jallib
+Jallib can be downloaded from https://github.com/jallib/jallib. But due to the building process, I suggest you download the release archive from jal official site, the release archive also contains all source codes, but flatten the library files, sample files into one dir:
 
 ```
 wget http://www.justanotherlanguage.org/sites/default/files/ftp_server/builds/release/jallib-1.7.0.zip
@@ -129,7 +150,7 @@ sudo mkdir /opt/jallib
 sudo unzip jallib-1.7.0.zip -d /opt/jallib
 ```
 
-The release archive (even the git repos) contains prebuilt binaries, delete all of them and use the compiler built from source:
+The release archive (even the git repo) contains prebuilt binaries, delete all of them and use the compiler built from source above:
 
 ```
 sudo rm /opt/jallib/compiler/*.exe
@@ -282,6 +303,8 @@ A 'blink.hex' will be generated in currect dir.
 
 ## JALV2
 
+Actually, Jallib is the 'SDK' of JALV2, it contains a lot of pre-defined device files and we already installed it before.
+
 Below is a JALV2 example for PIC16F1823 to blink led connect to pin A.2, it's modified from '16f1823_blink_intosc.jal' in 'jallib/sample` dir:
 
 ```
@@ -350,6 +373,7 @@ Hardware stack depth 0 of 16
 ```
 
 A 'blink.hex' will be generated in currect dir.
+
 
 # Programming
 
@@ -424,7 +448,6 @@ For example, the PIC16F1823 pinout is:
 and the PIC16F690 pinout is:
 
 <img src="https://user-images.githubusercontent.com/1625340/212552708-4801ad3f-3160-45e7-a292-a0cb260e82c5.png" width="40%"/>
-
 
 
 To update PICKIT2 firmware:
