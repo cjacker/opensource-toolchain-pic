@@ -72,7 +72,7 @@ make install
 ```
 If the `prefix` does not set to standard dir (such as '/usr' or '/usr/local'), you need add the `<prefix>/bin` dir to PATH env.
 
-## GCBASIC
+## GCBasic
 
 [Greate Cow BASIC](http://gcbasic.sourceforge.net/Typesetter/index.php/Home) is a robust and fully functional compiler and assembler for Microchip PIC or Atmel AVR 8-bit microcontroller. It seems have active development and better support than SDCC PIC part, and also support more PIC MCU model than SDCC by default.
 
@@ -249,7 +249,7 @@ After build successfully, a 'blink.hex' file will be generated in currect dir.
 By the way, it's not neccesary to look into the codes seriously at this time. every PIC model has it's own register set, although most of them are identical and most of the codes can be re-used, but the code you write for a model more likely is not compatible with other models, it always require some major or minor changes to work.
 
 
-## GCBASIC
+## GCBasic
 
 Below is a gcbasic example to blink led:
 
@@ -479,7 +479,7 @@ Erasing Device...
 Operation Succeeded
 ```
 
-Note that the device name from the auto-detection is now placed after the -P argument. Two new arguments is supplied now. -X tells the PICKit2 to "Use VPP first Program Entry Method", you may omit it. -E tells pk2cmd to erase the connected PIC.
+Note that the device name from the auto-detection is now placed after the -P argument, -X tells the PICKit2 to "Use VPP first Program Entry Method", you may omit it. -E tells pk2cmd to erase the connected PIC.
 
 To program target device:
 ```
@@ -493,7 +493,7 @@ Program Succeeded.
 Operation Succeeded
 ```
 
-Two new arguments again. -M tells pk2cmd to actually program the PIC. -F tells pk2cmd which file to use. The -M argument can actually also be either -MP, -ME, -MI or -MC to program only Program memory, EEPROM, ID memory or Configuration memory respectively but for most cases you will program the entire PIC using -M.
+-M tells pk2cmd to actually program the PIC. -F tells pk2cmd which file to use. The -M argument can actually also be either -MP, -ME, -MI or -MC to program only Program memory, EEPROM, ID memory or Configuration memory respectively but for most cases you will program the entire PIC using -M.
 
 To verify:
 ```
