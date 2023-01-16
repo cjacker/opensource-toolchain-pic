@@ -24,7 +24,7 @@ Thanks for opensource community, we have completely open source toolchain (but w
 - [SDK](https://github.com/cjacker/opensource-toolchain-pic#sdk)
   + [SDCC](https://github.com/cjacker/opensource-toolchain-pic#sdcc-1)
   + [GCBasic](https://github.com/cjacker/opensource-toolchain-pic#gcbasic-1)
-  + [JALV2](hthttps://github.com/cjacker/opensource-toolchain-pic#other-program-solutionstps://github.com/cjacker/opensource-toolchain-pic#jalv2-1)
+  + [JALV2](https://github.com/cjacker/opensource-toolchain-pic#jalv2-1)
 - [Programming](https://github.com/cjacker/opensource-toolchain-pic#programming)
   + [p2cmd minus with pickit 2 or 3](https://github.com/cjacker/opensource-toolchain-pic#using-pk2cmd-minus-with-pickit2-or-pickit3)
   + [a-p-prog with arduino](https://github.com/cjacker/opensource-toolchain-pic#using-a-p-prog-with-arduino-as-pic-programmer)
