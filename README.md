@@ -1,4 +1,4 @@
-# opensource toolchain for 8bit PIC MCU
+# Opensource toolchain for 8bit PIC MCU
 
 **NOTE: the MIT license of this repo means all individual resources made by myself, the content of the tutorial and the example codes is licensed under MIT. All third-party opensource projects, upstream source codes and patches to other opensource projects will/should follow their own LICENSE.**
 
