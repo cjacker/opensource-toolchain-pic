@@ -21,6 +21,7 @@ Thanks for opensource community, we have completely open source toolchain (but w
   + [SDCC](https://github.com/cjacker/opensource-toolchain-pic#sdcc)
   + [GCBasic](https://github.com/cjacker/opensource-toolchain-pic#gcbasic)
   + [JALV2](https://github.com/cjacker/opensource-toolchain-pic#jalv2)
+  + [Other compilers](https://github.com/cjacker/opensource-toolchain-pic#other-compilers)
 - [SDK](https://github.com/cjacker/opensource-toolchain-pic#sdk)
   + [SDCC](https://github.com/cjacker/opensource-toolchain-pic#sdcc-1)
   + [GCBasic](https://github.com/cjacker/opensource-toolchain-pic#gcbasic-1)
@@ -161,6 +162,17 @@ sudo rm -r /opt/jallib/compiler/other_versions
 ```
 
 Now, the `jalv2` compiler installed at `/usr/bin/jalv2` and `jallib` installed at `/opt/jallib`.
+
+# Other compilers:
+## PicPas
+
+PicPas is multi-platform Pascal cross-compiler and IDE for Microchip 8 bits PIC microcontrollers, written in Lazarus, which generates executable code for Baseline and Mid-range PIC microcontrollers. But There is not yet support for Enhanced Mid-range, or the PIC18 High-preformance families of PIC.
+
+Please refer to:
+
+https://github.com/t-edson/PicPas
+
+
 
 # SDK
 
