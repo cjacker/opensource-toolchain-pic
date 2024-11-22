@@ -11,7 +11,7 @@ JALV2=jalv2
 all: $(SRC:.jal=.hex)
 
 $(SRC:.jal=.hex): $(SRC)
-	jalv2 $^ -s /opt/jallib/lib
+	jalv2 $^ -s /opt/jallib/include/device -s /opt/jallib/include/jal
 
 flash: $(SRC:.jal=.hex)
 	pk2cmd -P pic$(TARGET) -M -R -T -F blink.hex
