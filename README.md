@@ -700,6 +700,7 @@ Done.
 ## other program solutions
 
 There are a lot of opensource (both hardware and software) program solutions for PIC, list some of them here for your reference:
+* https://sourceforge.net/projects/openprogrammer/
 * http://hyvatti.fi/~jaakko/pic/picprog.html
 * http://usbpicprog.org/
 * https://github.com/rweather/ardpicprog
