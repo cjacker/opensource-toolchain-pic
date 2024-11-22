@@ -77,9 +77,9 @@ If the `prefix` does not set to standard dir (such as '/usr' or '/usr/local'), y
 
 [Greate Cow BASIC](http://gcbasic.sourceforge.net/Typesetter/index.php/Home) is a robust and fully functional compiler and assembler for Microchip PIC or Atmel AVR 8-bit microcontroller. It seems have active development and better support than SDCC PIC part, and also support more PIC MCU model than SDCC by default.
 
-GCBASIC can be downloaded from https://sourceforge.net/projects/gcbasic/files/GCBasic%20-%20Linux%20Distribution/
+GCBASIC can be downloaded from https://sourceforge.net/projects/gcbasic/files/GCBASIC%20-%20Linux%20Distribution/, the latest version is 'GCBASIC-1_00_1288.rar'.
 
-The 'GCB@Syn.rar' password is 'GCB', as mentioned in FAQ:
+The password of this rar archive is 'GCB', as mentioned in FAQ:
 
 >Why is the rar File for Linux encrypted?
 >
@@ -88,15 +88,12 @@ The 'GCB@Syn.rar' password is 'GCB', as mentioned in FAQ:
 To build gcbasic, you need to have freebasic installed. Build and install gcbasic as
 
 ```
-cd GreatCowBASIC
-# If you use gcbasic-0.99.01, a patch is needed.
-cat gcbasic-0.99.01-build-fix.patch|patch -p1
+cd GCBASIC
+sed -i "s@LinuxBuild/SupportFiles@linuxbuild/supportfiles@g" sources/linuxbuild/install.sh
 cd sources/linuxbuild
 ./install.sh build
 sudo ./install.sh install
 ```
-
-A patch is needed to build gcbasic-0.99.01 successfully, and the patch 'gcbasic-0.99.01-build-fix.patch' provided in this repo. If you use the latest version of gcbasic, please omit this patch step.
 
 After installation, you should have `gcbasic` command on your PATH.
 
@@ -362,15 +359,15 @@ end loop
 Build it as:
 
 ```
-jalv2 blink.jal -s /opt/jallib/lib
+jalv2 blink.jal -s /opt/jallib/include/device -s /opt/jallib/include/jal 
 ```
 
 The output looks like:
 
 ```
-jal jalv2compiler-jalv25r6
+jal jalv2compiler-jalv25r8 (compiled Nov 22 2024)
 generating p-code
-11995 tokens, 112596 chars; 2404 lines; 3 files
+12370 tokens, 115661 chars; 2476 lines; 3 files
 generating PIC code pass 1
 generating PIC code pass 2
 7 branches checked, 0 errors
